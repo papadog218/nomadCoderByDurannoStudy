@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React State</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.querySelector('#root');
+
+    let cnt = 0;
+
+    // 에러의 원인이었음 => Error Decoder
+    // const Container = () => {
+    //     <div>
+    //         <h3>Total Clicked : {cnt}</h3>
+    //         <button>Click me</button>
+    //     </div>
+    // };
+
+    // {}가 없어야 랜더함수에서 에러가 안나는걸 확인함
+    // const Container = () => 
+    //     <div>
+    //         <h3>Total Clicked : {cnt}</h3>
+    //         <button>Click me</button>
+    //     </div>;
+
+    // Error Decoder 해석을 보니 {}가 있어도 안에 리턴을 붙여주면 정상 동작함
+    // const Container = () => {
+    //     return (
+    //         <div>
+    //             <h3>Total Clicked : {cnt}</h3>
+    //             <button>Click me</button>
+    //         </div>
+    //     )
+    // };
+
+    // 니꼬쌤은 {}가 아니고 ()를 붙였었음!!
+    const Container = () => (
+        <div>
+            <h3>Total Clicked : {cnt}</h3>
+            <button onClick={cntUp}>Click me</button>
+        </div>
+    );
+
+    function cntUp() {
+        cnt = cnt + 1;
+        render(); // 리랜더링
+    }
+
+    // 이렇게 쓰면 최초 한번만 랜터링되고 카운터가 증가했을 때 리랜더링 되지 않아서 화면의 카운트가 증가 안함
+    // ReactDOM.render(<Container/>, root);
+    
+    // 위의 이유로 함수화하고 필요한 곳에서 호출해 랜더링함
+    // but 이렇게해도 변화가 있는 곳에서 리랜더링을 잊지 않고 호출해야하므로 좋은 방법은 아님
+    // 자동 리랜더링 기능이 리액트에 있음 (다음 챕터에)
+    function render() {
+        ReactDOM.render(<Container/>, root);
+    }
+    render();
+</script>
+
+</html>
