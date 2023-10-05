@@ -5,40 +5,96 @@
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>강의 연결 링크</title>
+    <style>
+        .wrap { display: flex; }
+        .wrap .hide { display: none; }
+        .wrap .js { width: 400px; }
+        .wrap .js h1:hover { cursor: pointer; }
+    </style>
 </head>
 <body>
-    <ul>
-        <h1>이전 스터디</h1>
-        <li><a href="javascript/lectures/No_2.10/practice/index.html">#2.10 연습화면</a></li>
-        <li><a href="javascript/lectures/No_2.10/quest/index.html">#2.10 숙제</a></li>
-        <li><a href="javascript/lectures/No_2.13/practice/index.html">#2.13 연습화면</a></li>
-        <li><a href="javascript/lectures/No_2.14/practice/index.html">#2.14 연습화면</a></li>
-        <li><a href="javascript/lectures/No_2.15/practice/index.html">#2.15 연습화면</a></li>
-        <li><a href="javascript/lectures/No_2.16/practice/index.html">#2.16 연습화면</a></li>
-    </ul>
-    <ul>
-        <h1>7/11</h1>
-        <li><a href="javascript/lectures/No_3.7/practice/index.html">#3.7 연습화면</a></li>
-    </ul>
-    <ul>
-        <h1>7/18</h1>
-        <li><a href="javascript/lectures/login/No_4.6/practice/index.html">#4.6 로그인 화면</a></li>
-    </ul>
-    <ul>
-        <h1>8/1</h1>
-        <li><a href="javascript/lectures/clock/practice/No_5.2/index.html">#5.2 시계 화면</a></li>
-    </ul>
-    <ul>
-        <h1>8/8</h1>
-        
-    </ul>
-    <ul>
-        <h1>8/18</h1>
-        <li><a href="javascript/lectures/todoList/No_7.0/index.html">#7.0 할 일 목록 만들기</a></li>
-    </ul>
-    <ul>
-        <h1>8/22</h1>
-        <li><a href="javascript/lectures/todoList/No_7.8/index.html">#7.8 할 일 목록 만들기(CRUD 기능 추가버전)</a></li>
-    </ul>
+    <div class="wrap">
+        <div class="js">
+            <h1 class="jsTitle">자바스크립트 스터디 click</h1>
+            <div class="list hide">
+                <ul>
+                    <li><a href="javascript/lectures/No_2.10/practice/index.html">#2.10 연습화면</a></li>
+                    <li><a href="javascript/lectures/No_2.10/quest/index.html">#2.10 숙제</a></li>
+                    <li><a href="javascript/lectures/No_2.13/practice/index.html">#2.13 연습화면</a></li>
+                    <li><a href="javascript/lectures/No_2.14/practice/index.html">#2.14 연습화면</a></li>
+                    <li><a href="javascript/lectures/No_2.15/practice/index.html">#2.15 연습화면</a></li>
+                    <li><a href="javascript/lectures/No_2.16/practice/index.html">#2.16 연습화면</a></li>
+                </ul>
+                <ul>
+                    <h1>7/11</h1>
+                    <li><a href="javascript/lectures/No_3.7/practice/index.html">#3.7 연습화면</a></li>
+                </ul>
+                <ul>
+                    <h1>7/18</h1>
+                    <li><a href="javascript/lectures/login/No_4.6/practice/index.html">#4.6 로그인 화면</a></li>
+                </ul>
+                <ul>
+                    <h1>8/1</h1>
+                    <li><a href="javascript/lectures/clock/practice/No_5.2/index.html">#5.2 시계 화면</a></li>
+                </ul>
+                <ul>
+                    <h1>8/8</h1>
+                    
+                </ul>
+                <ul>
+                    <h1>8/18</h1>
+                    <li><a href="javascript/lectures/todoList/No_7.0/index.html">#7.0 할 일 목록 만들기</a></li>
+                </ul>
+                <ul>
+                    <h1>8/22</h1>
+                    <li><a href="javascript/lectures/todoList/No_7.8/index.html">#7.8 할 일 목록 만들기(CRUD 기능 추가버전)</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="react">
+            <h1>리액트 스터디 click</h1>
+            <div class="list hide">
+                <ul>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 타이틀 클릭기능 구현 시작
+        let jsArea = document.querySelector(".js");
+        let jsList = jsArea.querySelector(".list");
+        let jsClickPoint = jsArea.querySelector('h1');
+
+        let reactArea = document.querySelector(".react");
+        let reactList = reactArea.querySelector(".list");
+        let reactClickPoint = reactArea.querySelector('h1');
+
+        function onClick (e) {
+            if (e.target.className == 'jsTitle') {
+                let hasHide = jsList.classList.contains('hide');
+                if (hasHide) {
+                    jsClickPoint.innerText = '자바스크립트 스터디 off'
+                } else {
+                    jsClickPoint.innerText = '자바스크립트 스터디 on'
+                }
+                jsList.classList.toggle('hide');
+            } else {
+                let hasHide = reactList.classList.contains('hide');
+                if (hasHide) {
+                    reactClickPoint.innerText = '리액트 스터디 off'
+                } else {
+                    reactClickPoint.innerText = '리액트 스터디 on'
+                }
+                reactList.classList.toggle('hide');
+                
+            }
+        }
+
+        jsClickPoint.addEventListener('click', onClick);
+        reactClickPoint.addEventListener('click', onClick);
+        // 타이틀 클릭기능 구현 끝
+
+    </script>
 </body>
 </html>
